@@ -27,19 +27,34 @@ class UsuarioController {
                     .json({ mensagem: 'A senha deve ter entre 8 e 16 dígitos' })
             }
     
+            const usuarioExistente = await Usuario.findOne({
+                where: {
+                    email: dados.email
+                }
+            })
+
+            if(usuarioExistente) {
+                return response
+                .status(409)
+                .json({mensagem: 'Já existe uma conta com esse email'})
+            }
+
             const usuario = await Usuario.create({
                 nome: dados.nome,
                 email: dados.email,
                 password_hash: dados.password
             })
 
-            response.status(201).json(usuario)
+            response.status(201).json({
+                nome: usuario.nome,
+                createdAt: usuario.createdAt,
+                updatedAt: usuario.updatedAt
+            })
 
         } catch (error) {
             console.log(error)
             response.status(500).json({mensagem: 'Houve um erro ao criar conta'})
         }
-       
     }
 }
 
