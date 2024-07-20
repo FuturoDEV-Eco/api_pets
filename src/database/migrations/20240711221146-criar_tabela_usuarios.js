@@ -3,18 +3,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-  
+
      await queryInterface.createTable(
-      'usuarios', 
+      'usuarios',
       {
         id: {
-          primaryKey: true,
           autoIncrement: true,
+          primaryKey: true,
           type: Sequelize.INTEGER,
           allowNull: false
         },
         nome: {
-          type: Sequelize.STRING(150),
+          type: Sequelize.STRING(100),
           allowNull: false
         },
         email: {
@@ -22,7 +22,7 @@ module.exports = {
           allowNull: false,
           unique: true
         },
-        password_hash: {
+        password_hash : { 
           type: Sequelize.STRING,
           allowNull: false
         },
@@ -39,6 +39,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-     await queryInterface.dropTable('usuarios'); 
+     await queryInterface.dropTable('usuarios');
   }
 };
