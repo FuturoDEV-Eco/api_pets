@@ -36,6 +36,12 @@
 ## Documentação do Sequelize:
 https://sequelize.org/docs/v6/core-concepts/model-basics/
 
+## Trabalhando com Documentação:
+
+### Gerar o documento do Swagger.json usando o AutoGen
+
+`npm run swagger`
+
 ## Bibliotecas utilizadas:
 
 ### instalar o sequelize
@@ -50,3 +56,7 @@ https://sequelize.org/docs/v6/core-concepts/model-basics/
 `npm install jsonwebtoken`
 ### instalar o axios
 `npm install axios`
+### instalar o Swagger UI
+`npm install swagger-ui-express`
+### instalar o Swagger AutoGen para gerar o documento Swagger de forma automatica.
+`npm install swagger-autogen`

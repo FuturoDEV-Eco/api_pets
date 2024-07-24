@@ -11,8 +11,27 @@ const validaToken = require('../middlewares/validaToken')
 
 const routes = new Router()
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./doc.swagger.json');
+
+routes.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 routes.use('/usuarios', usuariosRoutes)
-routes.post('/login', LoginController.login)
+routes.post('/login', LoginController.login /*
+    /*
+        #swagger.tags = ['Usuários'],
+        #swagger.description = 'Endpoint para logar um usuário',
+        #swagger.parameters['loginUsuario'] = {
+            in: 'body',
+            description: 'Login do usuário',
+            required: true,
+            schema: { 
+                $email: "teste@gmail.com",
+                $password: "teste123"
+            }
+        }
+    */
+)
 routes.use('/permissoes', validaToken, permissoesRoutes)
 
 routes.use('/responsaveis', validaToken, responsaveisRoutes)
